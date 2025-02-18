@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-amber-50;
+    background-image: 
+      radial-gradient(#8B4513 0.5px, transparent 0.5px),
+      radial-gradient(#8B4513 0.5px, #fffbeb 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #root {
+    @apply flex flex-col min-h-screen;
+  }
+}
+
+.vintage-shadow {
+  box-shadow: 
+    3px 3px 0 rgba(139, 69, 19, 0.1),
+    0 10px 20px -10px rgba(139, 69, 19, 0.15);
+}
+
+.vintage-card {
+  @apply bg-white rounded-lg p-6 vintage-shadow border border-amber-200;
+  background: linear-gradient(to bottom, #ffffff 0%, #fff8e1 100%);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.vintage-card:hover {
+  transform: translateZ(10px);
+}
+
+.sticky-note {
+  background: #fff8dc;
+  box-shadow: 
+    2px 2px 2px rgba(139, 69, 19, 0.1),
+    0 0 0 1px rgba(139, 69, 19, 0.05);
+  transform: rotate(-3deg);
+  transition: all 0.3s ease;
+}
+
+.sticky-note:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 
+    4px 4px 8px rgba(139, 69, 19, 0.1),
+    0 0 0 1px rgba(139, 69, 19, 0.05);
+}
+
+.progress-bar {
+  @apply h-2 rounded-full bg-amber-100 overflow-hidden;
+}
+
+.progress-value {
+  @apply h-full transition-all duration-500;
+  background: linear-gradient(90deg, #8B4513 0%, #D2691E 100%);
+}
+
+.task-card {
+  @apply p-4 rounded-lg border border-amber-200 bg-white transition-all duration-300;
+  transform-style: preserve-3d;
+}
+
+.task-card:hover {
+  @apply shadow-lg;
+  transform: translateZ(20px);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg) translateZ(0); }
+  50% { transform: translateY(-10px) rotate(1deg) translateZ(20px); }
+  100% { transform: translateY(0px) rotate(0deg) translateZ(0); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.float-animation-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.float-animation-reverse {
+  animation: float 7s ease-in-out infinite reverse;
+  animation-delay: 1s;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.vintage-button {
+  @apply px-6 py-2 rounded-lg text-white font-medium transition-all duration-300;
+  background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(139, 69, 19, 0.2),
+    0 2px 4px -1px rgba(139, 69, 19, 0.1);
+}
+
+.vintage-button:hover {
+  transform: translateY(-2px) translateZ(5px);
+  box-shadow: 
+    0 6px 8px -1px rgba(139, 69, 19, 0.3),
+    0 4px 6px -1px rgba(139, 69, 19, 0.2);
+}
+
+.stats-card {
+  @apply bg-white/90 backdrop-blur-sm rounded-lg p-6 border border-amber-200 transition-all duration-300;
+  transform-style: preserve-3d;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,248,225,0.95) 100%);
+}
+
+.stats-card:hover {
+  @apply shadow-lg;
+  transform: translateZ(20px);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  @apply w-8 h-8 flex items-center justify-center rounded-full text-sm transition-colors;
+}
+
+.calendar-day.active {
+  @apply bg-amber-800 text-white;
+}
+
+.calendar-day:hover:not(.active) {
+  @apply bg-amber-100;
+}
+
+.notification-badge {
+  @apply absolute -top-1 -right-1 w-4 h-4 bg-red-700 rounded-full text-white text-xs flex items-center justify-center;
+}
+
+.glass-effect {
+  @apply backdrop-blur-md bg-amber-50/90 border-b border-amber-200;
+}
+
+.rating-stamp {
+  @apply relative inline-flex items-center justify-center;
+  width: 120px;
+  height: 120px;
+}
+
+.rating-stamp::before {
+  content: '';
+  @apply absolute inset-0 border-4 border-amber-800 rounded-full;
+  transform: rotate(-15deg);
+}
+
+.rating-stamp::after {
+  content: '';
+  @apply absolute inset-2 border-2 border-amber-800 rounded-full;
+  transform: rotate(5deg);
+}
+
+.typewriter-text {
+  overflow: hidden;
+  border-right: 2px solid #8B4513;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  max-width: 100%;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #8B4513 }
+}
+
+@media (max-width: 768px) {
+  .typewriter-text {
+    white-space: normal;
+    animation: none;
+    border-right: none;
+  }
+}
