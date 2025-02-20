@@ -1,7 +1,7 @@
 import React from 'react';
 import FloatingElement from '../ui/FloatingElement';
 import StatsCard from '../ui/StatsCard';
-import { Clock, CheckSquare, Target } from 'lucide-react';
+import { Clock, CheckSquare, Target, ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -14,12 +14,18 @@ const Hero: React.FC = () => {
           <br />
           <span className="text-amber-600">all in one place</span>
         </h1>
-        <p className="text-lg sm:text-xl text-amber-800 mb-8 max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-amber-800 mb-12 max-w-2xl mx-auto">
           Efficiently manage your tasks and boost productivity with our vintage-inspired task manager.
         </p>
-        <button className="vintage-button text-lg px-8 py-3">
-          Get started for free
-        </button>
+        <div className="flex items-center justify-center gap-6 mb-16">
+          <button className="vintage-button text-lg px-8 py-3">
+            Get started for free
+          </button>
+          <button className="vintage-secondary-button text-lg px-8 py-3 flex items-center gap-2">
+            Watch demo
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
 
       <div className="hidden md:block">
@@ -51,16 +57,19 @@ const Hero: React.FC = () => {
           icon={<CheckSquare className="w-12 h-12 text-amber-800" />}
           value="10k+"
           label="Active Users"
+          description="Growing community of productive users"
         />
         <StatsCard
           icon={<Target className="w-12 h-12 text-amber-800" />}
           value="98%"
           label="Tasks Completed"
+          description="High completion rate across teams"
         />
         <StatsCard
           icon={<Clock className="w-12 h-12 text-amber-800" />}
           value="4.9/5"
           label="User Rating"
+          description="Trusted by thousands of teams"
         />
       </div>
     </div>
