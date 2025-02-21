@@ -5,7 +5,9 @@ interface NotificationBadgeProps {
 }
 
 const NotificationBadge: React.FC<NotificationBadgeProps> = ({ count }) => (
-  <span className="notification-badge">{count}</span>
+  <span className="notification-badge">
+    {count > 9 ? '9+' : count}
+  </span>
 );
 
 export default NotificationBadge;

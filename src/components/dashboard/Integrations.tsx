@@ -2,8 +2,45 @@ import React from 'react';
 import { Grid, ArrowRight } from 'lucide-react';
 import FloatingElement from '../ui/FloatingElement';
 
+const IntegrationIcon: React.FC<{ name: string }> = ({ name }) => {
+  const icons = {
+    Gmail: (
+      <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+        <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="#EA4335"/>
+      </svg>
+    ),
+    Slack: (
+      <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+        <path d="M6 15a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-5zm2-7a2 2 0 0 1-2-2a2 2 0 0 1 2-2a2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5zm7 2a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2v-2zm-1 0a2 2 0 0 1-2 2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v7zm-2 7a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-5z" fill="#E01E5A"/>
+      </svg>
+    ),
+    Calendar: (
+      <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+        <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="#4285F4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M16 2V6M8 2V6M3 10H21M8 14H8.01M12 14H12.01M16 14H16.01M8 18H8.01M12 18H12.01M16 18H16.01" stroke="#4285F4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    Drive: (
+      <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+        <path d="M4.5 14.5L8 19.5H16L19.5 14.5" fill="#4285F4"/>
+        <path d="M8 4.5L4 14.5L8 19.5L12 9.5L8 4.5Z" fill="#0F9D58"/>
+        <path d="M16 4.5H8L12 9.5H20L16 4.5Z" fill="#FBBC04"/>
+        <path d="M20 14.5L16 4.5L12 9.5L16 19.5L20 14.5Z" fill="#EA4335"/>
+      </svg>
+    )
+  };
+
+  return icons[name as keyof typeof icons] || null;
+};
+
 const IntegrationCard: React.FC<{
-  integration: any;
+  integration: {
+    id: number;
+    name: string;
+    description: string;
+    users: string;
+    rating: number;
+  };
   index: number;
 }> = ({ integration, index }) => (
   <FloatingElement 
@@ -21,19 +58,7 @@ const IntegrationCard: React.FC<{
       <div className="relative z-20">
         <div className="integration-icon-container mb-4">
           <div className="integration-icon-wrapper">
-            {integration.name === 'Slack' ? (
-              <img 
-                src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-4nc9sr/Slack_Mark_Web.png"
-                alt="Slack"
-                className="w-12 h-12 object-contain"
-              />
-            ) : (
-              <img 
-                src={integration.icon} 
-                alt={integration.name} 
-                className="w-12 h-12 object-contain"
-              />
-            )}
+            <IntegrationIcon name={integration.name} />
           </div>
           <div className="integration-pattern"></div>
         </div>
@@ -62,7 +87,6 @@ const Integrations: React.FC = () => {
       id: 1,
       name: 'Gmail',
       description: 'Sync emails & tasks seamlessly',
-      icon: 'https://www.gstatic.com/images/branding/product/2x/gmail_48dp.png',
       users: '10k+',
       rating: 4.8
     },
@@ -70,7 +94,6 @@ const Integrations: React.FC = () => {
       id: 2,
       name: 'Slack',
       description: 'Real-time team collaboration',
-      icon: 'https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-4nc9sr/Slack_Mark_Web.png',
       users: '8k+',
       rating: 4.9
     },
@@ -78,7 +101,6 @@ const Integrations: React.FC = () => {
       id: 3,
       name: 'Calendar',
       description: 'Smart schedule management',
-      icon: 'https://www.gstatic.com/images/branding/product/2x/calendar_48dp.png',
       users: '15k+',
       rating: 4.7
     },
@@ -86,7 +108,6 @@ const Integrations: React.FC = () => {
       id: 4,
       name: 'Drive',
       description: 'Seamless file integration',
-      icon: 'https://www.gstatic.com/images/branding/product/2x/drive_48dp.png',
       users: '12k+',
       rating: 4.8
     }
@@ -113,7 +134,7 @@ const Integrations: React.FC = () => {
           </button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
           {integrations.map((integration, index) => (
             <IntegrationCard 
               key={integration.id} 

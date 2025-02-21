@@ -1,7 +1,6 @@
 import React from 'react';
 import FloatingElement from '../ui/FloatingElement';
-import StatsCard from '../ui/StatsCard';
-import { Clock, CheckSquare, Target, ArrowRight } from 'lucide-react';
+import { Clock, CheckSquare, Target, ArrowRight, Users } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -17,11 +16,11 @@ const Hero: React.FC = () => {
         <p className="text-lg sm:text-xl text-amber-800 mb-12 max-w-2xl mx-auto">
           Efficiently manage your tasks and boost productivity with our vintage-inspired task manager.
         </p>
-        <div className="flex items-center justify-center gap-6 mb-16">
-          <button className="vintage-button text-lg px-8 py-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
+          <button className="vintage-button text-lg px-8 py-3 w-full sm:w-auto">
             Get started for free
           </button>
-          <button className="vintage-secondary-button text-lg px-8 py-3 flex items-center gap-2">
+          <button className="vintage-secondary-button text-lg px-8 py-3 flex items-center justify-center gap-2 w-full sm:w-auto">
             Watch demo
             <ArrowRight className="w-5 h-5" />
           </button>
@@ -53,27 +52,44 @@ const Hero: React.FC = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-        <StatsCard
-          icon={<CheckSquare className="w-12 h-12 text-amber-800" />}
-          value="10k+"
-          label="Active Users"
-          description="Growing community of productive users"
-        />
-        <StatsCard
-          icon={<Target className="w-12 h-12 text-amber-800" />}
-          value="98%"
-          label="Tasks Completed"
-          description="High completion rate across teams"
-        />
-        <StatsCard
-          icon={<Clock className="w-12 h-12 text-amber-800" />}
-          value="4.9/5"
-          label="User Rating"
-          description="Trusted by thousands of teams"
-        />
+        <div className="stats-card-new group">
+          <div className="stats-icon-wrapper">
+            <Users className="w-8 h-8 text-amber-800" />
+          </div>
+          <div className="stats-content">
+            <div className="stats-value">10k+</div>
+            <div className="stats-label">Active Users</div>
+            <div className="stats-description">Growing community of productive users</div>
+          </div>
+          <div className="stats-decoration"></div>
+        </div>
+
+        <div className="stats-card-new group">
+          <div className="stats-icon-wrapper">
+            <Target className="w-8 h-8 text-amber-800" />
+          </div>
+          <div className="stats-content">
+            <div className="stats-value">98%</div>
+            <div className="stats-label">Tasks Completed</div>
+            <div className="stats-description">High completion rate across teams</div>
+          </div>
+          <div className="stats-decoration"></div>
+        </div>
+
+        <div className="stats-card-new group">
+          <div className="stats-icon-wrapper">
+            <Clock className="w-8 h-8 text-amber-800" />
+          </div>
+          <div className="stats-content">
+            <div className="stats-value">4.9/5</div>
+            <div className="stats-label">User Rating</div>
+            <div className="stats-description">Trusted by thousands of teams</div>
+          </div>
+          <div className="stats-decoration"></div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Hero
+export default Hero;
